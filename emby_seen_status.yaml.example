@@ -1,0 +1,16 @@
+# Copy this file to either ~/.config/emby_seen_status.yaml or ~/.emby_seen_status.yaml and edit it to match your Emby server.
+
+emby:
+    host: [your emby server URL, e.g. http://emby:8096]
+    api_key: [api key, create one in the web ui]
+
+# Hide the episodes of these shows, i.e. only show the show title and the
+# seen status of the entire show.
+hide_episodes:
+    - "Game of Scones"
+    - "Breaking Lad"
+    - "Stranger Thongs"
+    - "Doctor Glue"
+    - "The Walking Bread"
+    - "The Big Bang Theory of Everything Bagel"
+    - "Mr. Robot Chicken"
