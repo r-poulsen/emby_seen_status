@@ -144,13 +144,19 @@ class EmbySeen:
         """ Get a list of media available in Emby for each profile """
         movies, series, episodes = {}, {}, {}
         for profile in self.profiles:
+
+            print(f"Getting media list for {
+                  profile.name}...", file=sys.stderr, flush=True, end="")
             re = requests.get(
                 f"{self.host}/Users/{profile.id}/Items?" +
                 "IncludeItemTypes=Movie,Series,Episode&" +
                 f"Recursive=true&StartIndex=0&api_key={self.api_key}",
                 timeout=10)
+            print(" ", end="", file=sys.stderr, flush=True)
 
             re.raise_for_status()
+
+            print("", file=sys.stderr, flush=True)
 
             for item_data in re.json()['Items']:
 
