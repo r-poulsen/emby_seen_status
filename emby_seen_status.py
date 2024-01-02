@@ -208,8 +208,6 @@ class EmbySeen:
         for _, m in sorted(movies.items(), key=lambda x: x[1].name):
             self.output_append(["Movie", m.name, m.seen_by])
 
-        self.display_output()
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -254,9 +252,13 @@ if __name__ == '__main__':
     if 'host' not in c['emby'] or 'api_key' not in c['emby']:
         print(
             "ERROR: Server URL and API key must be set in the configuration file " +
-            "or on the command line"
-        )
+            "or on the command line!",
+            file=sys.stderr)
         sys.exit(1)
 
-    seen = EmbySeen(c)
-    seen.get_media_list()
+    try:
+        seen = EmbySeen(c)
+        seen.get_media_list()
+        seen.display_output()
+    except (BrokenPipeError, KeyboardInterrupt):
+        pass
